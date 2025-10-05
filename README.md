@@ -35,9 +35,12 @@ Angular Template Mover provides six comprehensive commands for Angular component
 
 1. **Install the extension** from the VS Code Marketplace
 2. **Open your Angular project** in VS Code
-3. **Right-click** on any TypeScript component, HTML template, or style file
-4. **Select "Angular Template Mover"** from the context menu
-5. **Choose your desired action** from the submenu
+3. **Access the extension** using one of three methods:
+   - **Right-click** on files in Explorer → "Angular Template Mover"
+   - **Right-click** in editor → "Angular Template Mover"
+   - **Command Palette** (Ctrl+Shift+P) → Type "Angular Template Mover"
+4. **Choose your desired action** from the available commands
+5. **Follow the prompts** for file operations and optional deletions
 
 ## 📖 Usage Examples
 
@@ -76,15 +79,56 @@ export class ExampleComponent {
 
 Right-click on `example.component.html` → Angular Template Mover → Move to Inline Template
 
-The extension automatically finds `example.component.ts` and converts the `templateUrl` to an inline `template`.
+## 🚀 How to Use
 
-## 🎯 Context Menu Integration
+Angular Template Mover can be accessed through **three different methods** for maximum convenience:
+
+### 🖱️ Method 1: Explorer Context Menu (Right-click)
+
+1. **Open your Angular project** in VS Code
+2. **Navigate to the Explorer panel** (Ctrl+Shift+E)
+3. **Right-click** on any supported file:
+   - `.ts` files (component files)
+   - `.html/.htm` files (template files)
+   - `.css/.scss/.sass/.less` files (style files)
+4. **Select "Angular Template Mover"** from the context menu
+5. **Choose your desired action** from the submenu
+
+### 📝 Method 2: Editor Context Menu (Right-click in editor)
+
+1. **Open a supported file** in the editor
+2. **Right-click anywhere** in the editor content
+3. **Select "Angular Template Mover"** from the context menu
+4. **Choose your desired action** from the submenu
+
+### ⌨️ Method 3: Command Palette
+
+1. **Open Command Palette** (Ctrl+Shift+P / Cmd+Shift+P)
+2. **Type "Angular Template Mover"** or any of these commands:
+   - `Angular Template Mover: Extract Template to File`
+   - `Angular Template Mover: Extract Styles to File`
+   - `Angular Template Mover: Inline Template from File`
+   - `Angular Template Mover: Inline Styles from File`
+   - `Angular Template Mover: Move to Inline Template`
+   - `Angular Template Mover: Move to Inline Styles`
+3. **Select the command** you want to execute
+4. The extension will operate on the **currently active file**
+
+## 🎯 Context-Aware Commands
 
 The extension intelligently shows relevant commands based on the file type:
 
-- **`.ts` files**: All extraction and inlining commands
-- **`.html/.htm` files**: Move to Inline Template
-- **Style files** (`.css`, `.scss`, `.sass`, `.less`): Move to Inline Styles
+| File Type | Available Commands |
+|-----------|-------------------|
+| **`.ts` files** | All extraction and inlining commands |
+| **`.html/.htm` files** | Move to Inline Template |
+| **Style files** (`.css`, `.scss`, `.sass`, `.less`) | Move to Inline Styles |
+
+### 💡 Pro Tips:
+
+- **Explorer context menu**: Best for batch operations on multiple files
+- **Editor context menu**: Quick access while editing a specific file
+- **Command palette**: Fastest access via keyboard shortcuts, works with active file
 
 ## ⚙️ Requirements
 

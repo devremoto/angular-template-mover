@@ -233,7 +233,10 @@ export const inlineStylesFromCss = async (uri?: vscode.Uri) => {
 
 async function generateStyle(document: vscode.TextDocument) {
     const content = document.getText();
-    const pattern = /styleUrls\s*:\s*\[([^\]]+)\]/;
+    // should also match styleUrl: `...`, styleUrl: '...', styleUrl: "..."
+    // should also match styleUrls: [`...`], styleUrls: ['...'], styleUrls: ["..."]
+
+    const pattern = /styleUrl[s]?\s*:\s*(\[[^\]]*\]|`[^`]*`|["'][^"']*["'])/s;
     //styleUrlsMatch should match styleUrls: ['...'], styleUrls: ["..."], styleUrls: [`...`]
     const styleUrlsMatch = content.match(pattern);
 
@@ -272,7 +275,7 @@ async function generateStyle(document: vscode.TextDocument) {
         console.log(combinedStyles);
         updatedContent = content.replace(
             pattern,
-            `styles: ["${combinedStyles.join('",\n"')}" ]`
+            `styles: [ \`${combinedStyles.join('`,\n`')}\` ]`
         );
     }
     if (combinedStyles.length === 1) {
