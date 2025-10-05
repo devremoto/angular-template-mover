@@ -10,7 +10,7 @@
   },
   "displayName": "Angular Template Mover",
   "description": "Move Angular component templates and styles from inline to separate files and vice versa.",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "publisher": "AdilsondeAlmeidaPedro",
   "repository": {
     "type": "git",
