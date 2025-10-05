@@ -16,6 +16,26 @@
     "type": "git",
     "url": "https://github.com/devremoto/angular-template-mover"
   },
+  "keywords": [
+    "vscode",
+    "extension",
+    "angular",
+    "template",
+    "mover",
+    "inline",
+    "styles",
+    "extract",
+    "typescript",
+    "html",
+    "css",
+    "scss",
+    "sass",
+    "less",
+    "component",
+    "source code generator",
+    "developer productivity",
+    "devtools"
+  ],
   "bugs": {
     "url": "https://github.com/devremoto/angular-template-mover/issues"
   },
