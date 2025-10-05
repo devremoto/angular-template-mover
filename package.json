@@ -9,7 +9,7 @@
     "linkedin": "https://www.linkedin.com/in/adilsonpedro/"
   },
   "displayName": "Angular Template Mover",
-  "description": "Moves template or style to a separeted file and moves the css or html to component",
+  "description": "Move Angular component templates and styles from inline to separate files and vice versa.",
   "version": "0.0.3",
   "publisher": "AdilsondeAlmeidaPedro",
   "repository": {
