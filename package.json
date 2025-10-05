@@ -19,7 +19,7 @@
   "bugs": {
     "url": "https://github.com/devremoto/angular-template-mover/issues"
   },
-  "icon": "assets/icon-256.png",
+  "icon": "assets/angular.ico",
   "engines": {
     "vscode": "^1.104.0"
   },
