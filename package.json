@@ -10,7 +10,7 @@
   },
   "displayName": "Angular Template Mover",
   "description": "Moves template or style to a separeted file and moves the css or html to component",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "publisher": "AdilsondeAlmeidaPedro",
   "repository": {
     "type": "git",
