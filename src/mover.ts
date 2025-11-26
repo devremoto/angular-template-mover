@@ -11,7 +11,7 @@ export async function extractTemplate(uri?: vscode.Uri) {
     }
     try {
         const document = await vscode.workspace.openTextDocument(targetUri);
-        const content = document.getText();
+        let content = document.getText();
         const componentMetadata = content.match(/@Component\(\s*({[\s\S]*?})\s*\)/);
         if (!componentMetadata) {
             vscode.window.showWarningMessage('No @Component decorator found in this file.');
@@ -35,23 +35,18 @@ export async function extractTemplate(uri?: vscode.Uri) {
             templateData = templateData.join('\n');
         }
         templateData = templateData
-            .replace(/\\n/g, '\n')
-            .replace(/\\'/g, "'")
-            .replace(/\\"/g, '"')
             .trim();
-        const templateContent = templateData;
         const componentDir = path.dirname(targetUri.fsPath);
         const componentName = path.basename(targetUri.fsPath, '.ts');
         const templatePath = path.join(componentDir, `${componentName}.html`);
 
-        await fs.promises.writeFile(templatePath, templateContent, 'utf8');
+        await fs.promises.writeFile(templatePath, templateData, 'utf8');
 
-        let updatedContent = content
-            .replace(templateContent, '')
-            .replace(
-                /template\s*:\s*['"`][^'"`]*['"`]/s,
-                `templateUrl: './${componentName}.html'`
-            );
+        const templatePattern = /template\s*:\s*(`[^`\\]*(?:\\.[^`\\]*)*`|'[^'\\]*(?:\\.[^'\\]*)*'|"[^"\\]*(?:\\.[^"\\]*)*")/g;
+        let updatedContent = content.replace(
+            templatePattern,
+            `templateUrl: './${componentName}.html'`
+        );
         const edit = new vscode.WorkspaceEdit();
         edit.replace(targetUri, new vscode.Range(0, 0, document.lineCount, 0), updatedContent);
         await vscode.workspace.applyEdit(edit);
