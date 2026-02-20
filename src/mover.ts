@@ -20,9 +20,18 @@ export async function extractTemplate(uri?: vscode.Uri) {
         var withoutImports = componentMetadata[1].replace(/imports\s*:\s*\[[^\]]*\],?/g, '');
         let metadata;
         try {
-            metadata = eval('(' + withoutImports + ')');
-            console.log(metadata);
-        } catch {
+            // Safely evaluate decorator-like object with a minimal ViewEncapsulation stub
+            const evaluateComponentObject = (text: string) => {
+                const ViewEncapsulationStub = { None: 2, Emulated: 0, ShadowDom: 3 };
+                // Use Function to limit scope and inject only the stub
+                const obj = Function('ViewEncapsulation', 'return (' + text + ')')(ViewEncapsulationStub);
+                // Normalize to pure JSON-safe data (removes functions, prototypes)
+                return JSON.parse(JSON.stringify(obj));
+            };
+
+            metadata = evaluateComponentObject(withoutImports);
+        } catch (error) {
+            vscode.window.showErrorMessage(`Error parsing component metadata: ${error}`);
             vscode.window.showWarningMessage('Failed to parse component metadata.');
             return;
         }
