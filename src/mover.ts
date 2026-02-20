@@ -23,7 +23,8 @@ export async function extractTemplate(uri?: vscode.Uri) {
 
             const evaluateComponentObject = (text: string) => {
                 const ViewEncapsulationStub = { None: 2, Emulated: 0, ShadowDom: 3 };
-                const obj = Function('ViewEncapsulation', 'return (' + text + ')')(ViewEncapsulationStub);
+                const ChangeDetectionStrategyStub = { OnPush: 0, Default: 1 };
+                const obj = Function('ViewEncapsulation', 'ChangeDetectionStrategy', 'return (' + text + ')')(ViewEncapsulationStub, ChangeDetectionStrategyStub);
                 return JSON.parse(JSON.stringify(obj));
             };
 
